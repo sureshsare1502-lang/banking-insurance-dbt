@@ -1,0 +1,21 @@
+
+version: 2
+
+models:
+  - name: customer_360
+    description: "Final customer-level banking and insurance summary"
+
+    columns:
+      - name: CUSTOMER_ID
+        description: "Unique customer identifier"
+        data_tests:
+          - not_null
+          - unique
+
+      - name: TOTAL_ACCOUNTS
+        data_tests:
+          - not_null
+
+      - name: TOTAL_POLICIES
+        data_tests:
+          - not_null

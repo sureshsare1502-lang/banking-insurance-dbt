@@ -1,0 +1,11 @@
+{{ config(materialized='table') }}
+
+SELECT
+    CUSTOMER_ID,
+    COUNT(DISTINCT POLICY_ID) AS TOTAL_POLICIES,
+    SUM(ANNUAL_PREMIUM) AS TOTAL_ANNUAL_PREMIUM,
+    SUM(COVERAGE_AMOUNT) AS TOTAL_COVERAGE_AMOUNT
+
+FROM {{ ref('staging_insurance_policies') }}
+
+GROUP BY CUSTOMER_ID

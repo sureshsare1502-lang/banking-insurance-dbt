@@ -1,0 +1,11 @@
+{{ config(materialized='table') }}
+
+SELECT
+    CUSTOMER_ID,
+    COUNT(DISTINCT ACCOUNT_ID) AS TOTAL_ACCOUNTS,
+    SUM(ACCOUNT_BALANCE) AS TOTAL_ACCOUNT_BALANCE,
+    MAX(OPEN_DATE) AS LATEST_ACCOUNT_OPEN_DATE
+
+FROM {{ ref('staging_banking_accounts') }}
+
+GROUP BY CUSTOMER_ID
